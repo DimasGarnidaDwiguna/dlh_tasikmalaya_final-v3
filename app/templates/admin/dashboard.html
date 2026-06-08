@@ -1,0 +1,112 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Dashboard Admin{% endblock %}
+{% block page_heading %}Dashboard{% endblock %}
+
+{% block content %}
+<section class="dashboard-hero">
+    <div>
+        <span>Website Resmi DLH Kota Tasikmalaya</span>
+
+        <h2>
+            Kontrol konten, data layanan, dan pengaduan masyarakat
+            dari satu dashboard.
+        </h2>
+    </div>
+
+    <a class="dashboard-action" href="{{ url_for('admin.news') }}">
+        <i class="bi bi-pencil-square"></i>
+        <span>Kelola Konten</span>
+    </a>
+</section>
+
+<div class="stat-grid">
+    <div>
+        <small>Konten</small>
+        <strong>{{ stats.news }}</strong>
+        <span>Berita</span>
+    </div>
+
+    <div>
+        <small>Publikasi</small>
+        <strong>{{ stats.documents }}</strong>
+        <span>Dokumen</span>
+    </div>
+
+    <div>
+        <small>Komunikasi</small>
+        <strong>{{ stats.contacts }}</strong>
+        <span>Pesan</span>
+    </div>
+
+    <div>
+        <small>Layanan</small>
+        <strong>{{ stats.complaints }}</strong>
+        <span>Pengaduan</span>
+    </div>
+
+    <div>
+        <small>Monitoring</small>
+        <strong>{{ stats.visitors }}</strong>
+        <span>Visitor Log</span>
+    </div>
+</div>
+
+<div class="dashboard-grid">
+    <section class="admin-card">
+        <div class="card-head">
+            <h2>Pesan Terbaru</h2>
+            <a href="{{ url_for('admin.contacts') }}">Lihat Semua</a>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <tr>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Subjek</th>
+                </tr>
+
+                {% for item in latest_contacts %}
+                    <tr>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.email }}</td>
+                        <td>{{ item.subject }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+
+    <section class="admin-card">
+        <div class="card-head">
+            <h2>Pengaduan Terbaru</h2>
+            <a href="{{ url_for('admin.complaints') }}">Lihat Semua</a>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <tr>
+                    <th>Tiket</th>
+                    <th>Nama</th>
+                    <th>Kategori</th>
+                    <th>Status</th>
+                </tr>
+
+                {% for item in latest_complaints %}
+                    <tr>
+                        <td>{{ item.ticket_number }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.category }}</td>
+                        <td>
+                            <span class="status-pill">
+                                {{ item.status }}
+                            </span>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+</div>
+{% endblock %}

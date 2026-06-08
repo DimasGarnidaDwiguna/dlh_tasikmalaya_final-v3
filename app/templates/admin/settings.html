@@ -1,0 +1,5 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<h1>Pengaturan</h1>
+<section class="admin-card"><h2>User Admin</h2><table><tr><th>ID</th><th>Nama</th><th>Username</th><th>Role</th><th>Login Terakhir</th></tr>{% for user in users %}<tr><td>{{ user.id }}</td><td>{{ user.name }}</td><td>{{ user.username }}</td><td>{{ user.role }}</td><td>{{ user.last_login or '-' }}</td></tr>{% endfor %}</table></section>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "public/base.html" %}
+{% block title %}{{ title }} | DLH Kota Tasikmalaya{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/content.css') }}">{% endblock %}
+{% block content %}
+<section class="page-hero"><span>Bidang</span><h1>{{ title }}</h1></section>
+<section class="section"><article class="content-box reveal"><h2>{{ title }}</h2>
+{% if page == "tata-lingkungan" %}<p>Bidang Tata Lingkungan menangani perencanaan, inventarisasi data, kajian lingkungan, dan penguatan konservasi.</p>
+{% elif page == "pengendalian-pencemaran" %}<p>Bidang ini memantau kualitas lingkungan, mengendalikan pencemaran air dan udara, serta mendukung penataan hukum lingkungan.</p>
+{% else %}<p>Bidang Pengelolaan Sampah menangani pengurangan, pemilahan, pengumpulan, pengangkutan, edukasi, dan penguatan bank sampah.</p>{% endif %}
+</article></section>
+{% endblock %}

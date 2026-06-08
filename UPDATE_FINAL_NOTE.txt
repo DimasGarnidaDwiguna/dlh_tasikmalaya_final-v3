@@ -1,0 +1,20 @@
+CATATAN UPDATE FINAL
+
+Project ini sudah diperbarui dengan:
+1. Database MySQL untuk phpMyAdmin.
+2. SQL schema dan data lengkap dari database source.
+3. UI/UX Jakarta style versi terakhir.
+4. Validasi input No. HP hanya angka di frontend dan backend.
+5. Validasi tahun dokumen hanya 4 digit angka.
+6. Validasi status pengaduan.
+7. Upload file dibuat lebih aman dengan nama file acak.
+8. Ekstensi upload berbahaya seperti svg, zip, js, html, php, exe tidak diizinkan.
+9. Download dokumen dibatasi hanya file yang tercatat di tabel documents.
+10. Fungsi, route, tombol, dan struktur menu dipertahankan sesuai project source.
+
+Untuk deployment publik:
+- Gunakan HTTPS.
+- Ganti SECRET_KEY.
+- Ganti password admin.
+- Jangan upload .env ke repository publik.
+- Gunakan database MySQL hosting atau managed database.

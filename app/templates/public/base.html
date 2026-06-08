@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}DLH Kota Tasikmalaya{% endblock %}</title>
+    <meta name="description" content="{% block meta_description %}Portal digital Dinas Lingkungan Hidup Kota Tasikmalaya.{% endblock %}">
+    <meta name="keywords" content="DLH Tasikmalaya, lingkungan hidup, pengaduan lingkungan, AMDAL, UKL UPL">
+    <meta property="og:title" content="{% block og_title %}DLH Kota Tasikmalaya{% endblock %}">
+    <meta property="og:description" content="Portal layanan, dokumen, informasi, galeri, dan pengaduan lingkungan.">
+    <meta property="og:type" content="website">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/core/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/core/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/core/navigation.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/core/layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/core/components.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/core/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/core/animations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/core/responsive.css') }}">
+    {% block page_css %}{% endblock %}
+</head>
+<body>
+<header class="site-header" id="siteHeader">
+    <div class="header-shell">
+        <nav class="navbar" aria-label="Navigasi utama">
+            <a class="brand" href="{{ url_for('public.home') }}" aria-label="Beranda DLH Kota Tasikmalaya">
+                <span class="brand-logo"><img src="{{ url_for('static', filename='img/logo.svg') }}" alt="Logo DLH"></span>
+                <span class="brand-text"><strong>Dinas Lingkungan Hidup</strong><small>Kota Tasikmalaya</small></span>
+            </a>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Buka menu">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="{{ url_for('public.home') }}">Beranda</a></li>
+                <li class="dropdown mega-trigger"><a href="#">Program</a>
+                    <ul class="mega-menu program-menu">
+                        <li><a href="{{ url_for('public.field', page='tata-lingkungan') }}"><b>Udara</b><small>Pengawasan kualitas udara</small></a></li>
+                        <li><a href="{{ url_for('public.field', page='pengendalian-pencemaran') }}"><b>Air</b><small>Pengelolaan dan pelestarian air</small></a></li>
+                        <li><a href="{{ url_for('public.field', page='pengelolaan-sampah') }}"><b>Sampah</b><small>Pengurangan dan penanganan sampah</small></a></li>
+                        <li><a href="{{ url_for('public.service_detail', slug='amdal') }}"><b>Pengawasan</b><small>Ketaatan lingkungan usaha</small></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown mega-trigger"><a href="#">Profil</a>
+                    <ul class="mega-menu profile-menu">
+                        <li><a href="{{ url_for('public.profile', page='tentang') }}"><b>Tentang DLH</b><small>Informasi instansi</small></a></li>
+                        <li><a href="{{ url_for('public.profile', page='tugas') }}"><b>Tupoksi</b><small>Tugas pokok dan fungsi</small></a></li>
+                        <li><a href="{{ url_for('public.profile', page='visi-misi') }}"><b>Visi dan Misi</b><small>Arah pembangunan lingkungan</small></a></li>
+                        <li><a href="{{ url_for('public.profile', page='struktur') }}"><b>Struktur Organisasi</b><small>Susunan organisasi DLH</small></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown mega-trigger"><a href="#">Publikasi Data</a>
+                    <ul class="mega-menu data-menu">
+                        <li><a href="{{ url_for('public.documents', page='download') }}"><b>Dokumen Publik</b><small>Unduh dokumen resmi</small></a></li>
+                        <li><a href="{{ url_for('public.documents', page='peraturan-walikota') }}"><b>Peraturan</b><small>Regulasi lingkungan hidup</small></a></li>
+                        <li><a href="{{ url_for('public.documents', page='sop-air-limbah') }}"><b>SOP Air Limbah</b><small>Standar pengelolaan air limbah</small></a></li>
+                        <li><a href="{{ url_for('public.documents', page='sop-emisi') }}"><b>SOP Emisi</b><small>Pengendalian emisi sumber tetap</small></a></li>
+                    </ul>
+                </li>
+                <li class="dropdown mega-trigger"><a href="#">Layanan</a>
+                    <ul class="mega-menu services-menu">
+                        <li><a href="{{ url_for('public.service_detail', slug='amdal') }}"><b>Perizinan AMDAL</b><small>Dokumen dampak lingkungan</small></a></li>
+                        <li><a href="{{ url_for('public.service_detail', slug='ukl-upl') }}"><b>UKL-UPL</b><small>Pengelolaan dan pemantauan</small></a></li>
+                        <li><a href="{{ url_for('public.service_detail', slug='sppl') }}"><b>SPPL</b><small>Surat pernyataan lingkungan</small></a></li>
+                        <li><a href="{{ url_for('public.service_detail', slug='iplc') }}"><b>IPLC</b><small>Izin pembuangan limbah cair</small></a></li>
+                        <li><a href="{{ url_for('public.complaint') }}"><b>Pengaduan</b><small>Laporan masalah lingkungan</small></a></li>
+                        <li><a href="{{ url_for('public.tracking') }}"><b>Tracking</b><small>Cek status tiket pengaduan</small></a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ url_for('public.information', page='berita') }}">Seputar DLH</a></li>
+                <li><a href="{{ url_for('public.contact') }}">Kontak</a></li>
+                <li><a class="login-link complaint-link" href="{{ url_for('public.complaint') }}"><i class="bi bi-megaphone"></i><span>Pengaduan</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>{% block content %}{% endblock %}</main>
+
+<footer class="jakarta-footer">
+    <section class="earth-band">
+        <div class="earth-text reveal"><span>SAVE OUR</span><strong>EARTH</strong><p>Bersama membangun Kota Tasikmalaya yang bersih, teduh, dan berkelanjutan.</p></div>
+        <div class="earth-stats reveal"><b>120+</b><small>Ruang Hijau</small></div>
+        <div class="earth-stats reveal"><b>24/7</b><small>Layanan Aduan</small></div>
+        <div class="earth-stats reveal"><b>100%</b><small>Portal Digital</small></div>
+    </section>
+    <section class="footer-main">
+        <div class="footer-contact">
+            <h3>Kontak Kami</h3>
+            <p><b>Alamat</b><br>Jl. Letnan Harun No. 1, Kota Tasikmalaya</p>
+            <p><b>Telepon</b><br>(0265) 331341</p>
+            <p><b>Email</b><br>dlh@tasikmalayakota.go.id</p>
+        </div>
+        <div><h4>Tentang Kami</h4><a href="{{ url_for('public.profile', page='tentang') }}">Profil DLH</a><a href="{{ url_for('public.profile', page='struktur') }}">Struktur Organisasi</a><a href="{{ url_for('public.profile', page='tugas') }}">Tupoksi</a></div>
+        <div><h4>Layanan</h4><a href="{{ url_for('public.service_detail', slug='amdal') }}">AMDAL</a><a href="{{ url_for('public.service_detail', slug='ukl-upl') }}">UKL-UPL</a><a href="{{ url_for('public.complaint') }}">Pengaduan</a><a href="{{ url_for('public.tracking') }}">Tracking</a></div>
+        <div><h4>Publikasi</h4><a href="{{ url_for('public.information', page='berita') }}">Berita</a><a href="{{ url_for('public.information', page='agenda') }}">Agenda</a><a href="{{ url_for('public.documents', page='download') }}">Dokumen</a><a href="{{ url_for('public.gallery', page='foto') }}">Galeri</a></div>
+    </section>
+    <div class="footer-bottom">© 2026 Dinas Lingkungan Hidup Kota Tasikmalaya</div>
+</footer>
+
+<a class="floating-chat" href="{{ url_for('public.complaint') }}" aria-label="Pengaduan lingkungan">
+    <span><i class="bi bi-chat-dots"></i></span><b>Tanya DLH</b>
+</a>
+<button class="scroll-top" id="scrollTop">↑</button>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block page_js %}{% endblock %}
+</body>
+</html>

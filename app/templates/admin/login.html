@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Admin DLH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/core/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/core/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pages/admin.css') }}">
+</head>
+<body class="login-body">
+<form class="login-card" method="post">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <h1>Admin DLH</h1>
+    <p>Masuk untuk mengelola CMS website.</p>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}<div class="alert {{ category }}">{{ message }}</div>{% endfor %}
+    {% endwith %}
+    <label>Username<input name="username" required></label>
+    <label>Password<input type="password" name="password" required></label>
+    <button>Login</button>
+    <small>Gunakan akun admin yang sudah dikonfigurasi pada sistem.</small>
+</form>
+</body>
+</html>

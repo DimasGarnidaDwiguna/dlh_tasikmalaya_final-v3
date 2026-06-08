@@ -1,0 +1,10 @@
+{% extends "public/base.html" %}
+{% block title %}Tracking Pengaduan | DLH Kota Tasikmalaya{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/forms.css') }}">{% endblock %}
+{% block content %}
+<section class="page-hero"><span>Tracking</span><h1>Tracking Pengaduan</h1></section>
+<section class="section split">
+    <form class="form-panel reveal" method="post">{% include "public/partials/flash.html" %}<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><h2>Cek Status</h2><label>Nomor Tiket<input name="ticket_number" placeholder="DLH-2026-00001" required></label><button class="btn">Cek Status</button></form>
+    <article class="content-box reveal">{% if complaint %}<h2>{{ complaint.ticket_number }}</h2><p><strong>Status:</strong> {{ complaint.status }}</p><p><strong>Kategori:</strong> {{ complaint.category }}</p><p><strong>Lokasi:</strong> {{ complaint.location }}</p><p><strong>Respon Admin:</strong> {{ complaint.admin_response or '-' }}</p>{% else %}<h2>Masukkan nomor tiket</h2><p>Status pengaduan akan tampil di sini.</p>{% endif %}</article>
+</section>
+{% endblock %}

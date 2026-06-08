@@ -1,0 +1,20 @@
+{% extends "public/base.html" %}
+{% block title %}{{ title }} | DLH Kota Tasikmalaya{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/content.css') }}">{% endblock %}
+{% block content %}
+<section class="page-hero"><span>Profil</span><h1>{{ title }}</h1></section>
+<section class="section split">
+    <article class="content-box reveal">
+        {% if page == "tentang" %}
+        <h2>Tentang DLH Kota Tasikmalaya</h2><p>Dinas Lingkungan Hidup Kota Tasikmalaya menyelenggarakan urusan pemerintahan bidang lingkungan hidup, pengendalian pencemaran, pengelolaan sampah, edukasi, dan pelayanan masyarakat.</p>
+        {% elif page == "tugas" %}
+        <h2>Tugas Pokok dan Fungsi</h2><p>Melaksanakan perencanaan, pembinaan, pengawasan, evaluasi, dan pelayanan bidang lingkungan hidup secara transparan dan akuntabel.</p>
+        {% elif page == "visi-misi" %}
+        <h2>Visi</h2><p>Terwujudnya lingkungan hidup Kota Tasikmalaya yang bersih, sehat, tertata, dan berkelanjutan.</p><h2>Misi</h2><ul class="check-list"><li>Meningkatkan kualitas lingkungan.</li><li>Mengendalikan pencemaran.</li><li>Menguatkan pengelolaan sampah.</li><li>Meningkatkan pelayanan digital.</li></ul>
+        {% else %}
+        <h2>Struktur Organisasi</h2><p>Struktur organisasi terdiri atas kepala dinas, sekretariat, bidang tata lingkungan, bidang pengendalian pencemaran dan penataan hukum, serta bidang pengelolaan sampah.</p>
+        {% endif %}
+    </article>
+    <article class="content-box green reveal"><h3>Fokus DLH</h3><ul class="check-list"><li>Pengelolaan lingkungan</li><li>Pelayanan perizinan</li><li>Pengaduan masyarakat</li><li>Data dan informasi</li></ul></article>
+</section>
+{% endblock %}

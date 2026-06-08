@@ -1,0 +1,25 @@
+{% extends "public/base.html" %}
+{% block title %}{{ title }} | DLH Kota Tasikmalaya{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/content.css') }}">{% endblock %}
+{% block content %}
+<section class="page-hero"><span>Informasi</span><h1>{{ title }}</h1></section>
+<section class="section">
+    {% if page == "berita" %}
+    <div class="news-grid">
+        {% for item in items.items %}
+        <article class="news-card reveal"><img src="{{ url_for('static', filename='img/' ~ item.image) }}" alt="{{ item.title }}"><span class="tag">{{ item.category.name if item.category else 'Berita' }}</span><h3>{{ item.title }}</h3><p>{{ item.excerpt }}</p><a href="{{ url_for('public.news_detail', slug=item.slug) }}">Baca Selengkapnya →</a></article>
+        {% endfor %}
+    </div>
+    {% include "public/partials/pagination.html" with context %}
+    {% elif page == "agenda" %}
+    <div class="agenda-list">
+        {% for item in items.items %}
+        <article class="agenda-card reveal"><div class="date-box"><strong>{{ item.date[-2:] }}</strong><span>{{ item.date[5:7] }}/{{ item.date[:4] }}</span></div><div><h3>{{ item.title }}</h3><p>📍 {{ item.location }}</p><p>{{ item.description }}</p></div></article>
+        {% endfor %}
+    </div>
+    {% include "public/partials/pagination.html" with context %}
+    {% else %}
+    <article class="content-box reveal"><h2>Panduan UMK Risiko Rendah</h2><p>Panduan ini membantu pelaku usaha mikro dan kecil memahami kebutuhan dokumen lingkungan sebelum menjalankan kegiatan usaha.</p><ol class="steps"><li>Identifikasi risiko usaha</li><li>Lengkapi data usaha</li><li>Pilih dokumen lingkungan</li><li>Simpan bukti persetujuan</li></ol></article>
+    {% endif %}
+</section>
+{% endblock %}

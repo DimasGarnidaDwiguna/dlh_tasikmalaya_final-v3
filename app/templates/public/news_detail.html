@@ -1,0 +1,9 @@
+{% extends "public/base.html" %}
+{% block title %}{{ item.title }} | DLH Kota Tasikmalaya{% endblock %}
+{% block meta_description %}{{ item.excerpt }}{% endblock %}
+{% block og_title %}{{ item.title }}{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/content.css') }}">{% endblock %}
+{% block content %}
+<section class="page-hero"><span>{{ item.category.name if item.category else 'Berita' }}</span><h1>{{ item.title }}</h1></section>
+<section class="section"><article class="content-box reveal"><img class="article-image" src="{{ url_for('static', filename='img/' ~ item.image) }}" alt="{{ item.title }}"><p>{{ item.content }}</p><p class="muted">Dilihat {{ item.views }} kali.</p></article></section>
+{% endblock %}

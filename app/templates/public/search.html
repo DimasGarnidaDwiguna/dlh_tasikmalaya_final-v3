@@ -1,0 +1,10 @@
+{% extends "public/base.html" %}
+{% block title %}Pencarian | DLH Kota Tasikmalaya{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/content.css') }}">{% endblock %}
+{% block content %}
+<section class="page-hero"><span>Search</span><h1>Pencarian</h1></section>
+<section class="section">
+<form class="search-box" method="get"><input name="q" value="{{ keyword }}" placeholder="Cari berita, dokumen, layanan, galeri"><button class="btn">Cari</button></form>
+{% if results %}<div class="card-grid three">{% for group, items in results.items() %}<article class="content-box"><h2>{{ group|title }}</h2>{% for item in items %}<p>{{ item.title }}</p>{% else %}<p class="muted">Tidak ada data.</p>{% endfor %}</article>{% endfor %}</div>{% endif %}
+</section>
+{% endblock %}

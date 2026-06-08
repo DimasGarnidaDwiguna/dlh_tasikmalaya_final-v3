@@ -1,0 +1,6 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<h1>CMS Layanan</h1>
+<form class="admin-form" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input name="title" placeholder="Judul" required><input name="slug" placeholder="slug" required><input name="icon" placeholder="Emoji icon"><input name="summary" placeholder="Ringkasan" required><textarea name="content" placeholder="Isi layanan" required></textarea><button>Tambah</button></form>
+<section class="admin-card"><table><tr><th>ID</th><th>Judul</th><th>Slug</th><th>Aksi</th></tr>{% for item in items %}<tr><td>{{ item.id }}</td><td>{{ item.title }}</td><td>{{ item.slug }}</td><td><form method="post" action="{{ url_for('admin.service_delete', item_id=item.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button class="danger">Hapus</button></form></td></tr>{% endfor %}</table></section>
+{% endblock %}

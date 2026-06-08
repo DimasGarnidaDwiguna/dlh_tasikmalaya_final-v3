@@ -1,0 +1,2 @@
+App validation skipped/error: No module named 'flask'
+Database will be created automatically on first run.

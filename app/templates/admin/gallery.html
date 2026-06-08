@@ -1,0 +1,6 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<h1>CMS Galeri</h1>
+<form class="admin-form" method="post" enctype="multipart/form-data"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input name="title" placeholder="Judul" required><select name="type"><option value="foto">Foto</option><option value="video">Video</option></select><input name="album" placeholder="Album"><input name="video_url" placeholder="URL video"><input name="description" placeholder="Deskripsi"><input type="file" name="image"><button>Tambah Galeri</button></form>
+<section class="admin-card"><table><tr><th>ID</th><th>Judul</th><th>Tipe</th><th>Album</th></tr>{% for item in items %}<tr><td>{{ item.id }}</td><td>{{ item.title }}</td><td>{{ item.type }}</td><td>{{ item.album }}</td></tr>{% endfor %}</table></section>
+{% endblock %}

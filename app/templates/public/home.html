@@ -1,0 +1,114 @@
+{% extends "public/base.html" %}
+{% block title %}Beranda | DLH Kota Tasikmalaya{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/home.css') }}">{% endblock %}
+{% block content %}
+<section class="hero-jakarta">
+    <div class="hero-orb orb-one"></div>
+    <div class="hero-orb orb-two"></div>
+    <div class="hero-copy reveal">
+        <span class="hero-kicker">Selamat Datang di ✨</span>
+        <h1>Website Resmi<br><span>DLH Kota Tasikmalaya</span></h1>
+        <p>Jelajahi layanan digital, informasi lingkungan, publikasi data, berita, galeri, dan pengaduan masyarakat dalam satu portal resmi.</p>
+        <div class="hero-actions">
+            <a class="btn primary" href="{{ url_for('public.complaint') }}">Buat Pengaduan</a>
+            <a class="btn glass" href="{{ url_for('public.documents', page='download') }}">Publikasi Data</a>
+        </div>
+    </div>
+    <div class="hero-side reveal">
+        <article class="hero-tile big"><span>🌿</span><h3>Jaga Tasikmalaya</h3><a href="{{ url_for('public.information', page='berita') }}">Telusuri</a></article>
+        <article class="hero-tile"><span>📝</span><h3>Pengaduan</h3><a href="{{ url_for('public.complaint') }}">Telusuri</a></article>
+        <article class="hero-tile"><span>📷</span><h3>Galeri</h3><a href="{{ url_for('public.gallery', page='foto') }}">Telusuri</a></article>
+    </div>
+    <div class="scroll-hint">Scroll</div>
+</section>
+
+<section class="menu-panel reveal" aria-label="Menu layanan utama">
+    <div class="menu-panel-head"><span>Menu</span><h2>Pilih menu navigasi</h2></div>
+    <div class="menu-grid">
+        <a href="{{ url_for('public.field', page='tata-lingkungan') }}"><span>🌬️</span><b>Udara</b><small>Pengawasan kualitas udara</small></a>
+        <a href="{{ url_for('public.field', page='pengendalian-pencemaran') }}"><span>💧</span><b>Air</b><small>Pengelolaan dan pelestarian air</small></a>
+        <a href="{{ url_for('public.field', page='pengelolaan-sampah') }}"><span>♻️</span><b>Sampah</b><small>Pengurangan dan pengelolaan sampah</small></a>
+        <a href="{{ url_for('public.service_detail', slug='amdal') }}"><span>✅</span><b>Pengawasan</b><small>Ketaatan kinerja lingkungan</small></a>
+        <a href="{{ url_for('public.documents', page='download') }}"><span>📄</span><b>Publikasi Data</b><small>Dokumen dan regulasi resmi</small></a>
+        <a href="{{ url_for('public.complaint') }}"><span>📣</span><b>Pengaduan</b><small>Laporan masalah lingkungan</small></a>
+    </div>
+</section>
+
+<section class="section layanan-section">
+    <div class="section-head jakarta-head reveal">
+        <div><h2>Layanan Kami</h2><p>Beragam layanan DLH Kota Tasikmalaya, dari perizinan lingkungan, dokumen, hingga pengaduan pencemaran.</p></div>
+        <a class="btn btn-small" href="{{ url_for('public.service_detail', slug='amdal') }}">Lihat Semua</a>
+    </div>
+    <div class="service-tabs reveal">
+        {% for service in services %}<a href="{{ url_for('public.service_detail', slug=service.slug) }}">{{ service.title }}</a>{% endfor %}
+        <a href="{{ url_for('public.tracking') }}">Tracking</a>
+        <a href="{{ url_for('public.documents', page='download') }}">Info Publik</a>
+    </div>
+    <div class="feature-service reveal">
+        <div class="feature-image"><img src="{{ url_for('static', filename='img/gallery-1.svg') }}" alt="Layanan lingkungan"></div>
+        <div class="feature-copy">
+            <span class="mini-label">Layanan Unggulan</span>
+            <h3>Pengaduan dan Layanan Lingkungan Terpadu</h3>
+            <p>Akses layanan resmi untuk perizinan, pengawasan, dokumen publik, dan pelaporan masalah lingkungan dengan tampilan cepat dan mudah digunakan.</p>
+            <div class="feature-list">
+                {% for service in services %}<a href="{{ url_for('public.service_detail', slug=service.slug) }}"><span>{{ service.icon }}</span>{{ service.title }}</a>{% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="realtime-section">
+    <div class="realtime-copy reveal">
+        <h2>Informasi Lingkungan dan<br>Kebersihan Realtime</h2>
+        <p>Update ringkas seputar layanan, dokumen, berita, dan pengaduan yang tercatat pada sistem DLH Kota Tasikmalaya.</p>
+    </div>
+    <div class="realtime-grid">
+        <a class="realtime-card reveal" href="{{ url_for('public.service_detail', slug='amdal') }}"><small>Klik untuk detail informasi</small><h3>Jumlah Layanan</h3><b>{{ stats.services }}</b><span>Layanan</span></a>
+        <a class="realtime-card reveal" href="{{ url_for('public.information', page='berita') }}"><small>Klik untuk detail informasi</small><h3>Berita Terkini</h3><b>{{ stats.news }}</b><span>Artikel</span></a>
+        <a class="realtime-card reveal" href="{{ url_for('public.documents', page='download') }}"><small>Klik untuk detail informasi</small><h3>Dokumen Publik</h3><b>{{ stats.documents }}</b><span>File</span></a>
+        <a class="realtime-card reveal" href="{{ url_for('public.tracking') }}"><small>Klik untuk detail informasi</small><h3>Pengaduan Masuk</h3><b>{{ stats.complaints }}</b><span>Tiket</span></a>
+    </div>
+</section>
+
+<section class="section news-section">
+    <div class="section-head jakarta-head reveal"><div><h2>Berita Terkini</h2><p>Ikuti informasi resmi DLH untuk edukasi, program, dan ajakan aksi lingkungan.</p></div><a class="btn btn-small" href="{{ url_for('public.information', page='berita') }}">Lihat Semua</a></div>
+    <div class="news-layout">
+        {% for item in news_items %}
+            {% if loop.first %}
+            <article class="news-feature reveal">
+                <img src="{{ url_for('static', filename='img/' ~ item.image) }}" alt="{{ item.title }}">
+                <div class="news-feature-body"><span>{{ item.category.name if item.category else 'Berita' }}</span><small>{{ item.created_at.strftime('%A, %d %B %Y') if item.created_at else 'Berita DLH' }}</small><h3>{{ item.title }}</h3><p>{{ item.excerpt }}</p><a href="{{ url_for('public.news_detail', slug=item.slug) }}">Baca Selengkapnya</a></div>
+            </article>
+            {% else %}
+            <article class="news-mini reveal">
+                <img src="{{ url_for('static', filename='img/' ~ item.image) }}" alt="{{ item.title }}">
+                <div><span>{{ item.category.name if item.category else 'Berita' }}</span><h3>{{ item.title }}</h3><a href="{{ url_for('public.news_detail', slug=item.slug) }}">Baca</a></div>
+            </article>
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>
+
+<section class="video-section">
+    <div class="video-copy reveal"><span>Video Terbaru</span><h2>Video Terkini</h2><p>Konten edukasi dan kegiatan DLH untuk meningkatkan kepedulian masyarakat terhadap lingkungan.</p><a class="btn glass-dark" href="{{ url_for('public.gallery', page='video') }}">Lihat Semua Video</a></div>
+    <div class="video-card reveal"><img src="{{ url_for('static', filename='img/video-thumb.svg') }}" alt="Video DLH"><button type="button">▶</button><h3>Gerakan Tasikmalaya Bersih dan Hijau</h3></div>
+</section>
+
+<section class="section digital-section">
+    <div class="section-head jakarta-head reveal"><div><h2>Layanan Digital</h2><p>Solusi digital dari DLH Kota Tasikmalaya untuk pelayanan yang cepat, transparan, dan mudah diakses.</p></div></div>
+    <div class="digital-grid">
+        <a class="digital-card reveal" href="{{ url_for('public.complaint') }}"><span>📣</span><h3>Pengaduan Lingkungan</h3><p>Laporkan masalah sampah, limbah, pencemaran, dan gangguan lingkungan.</p><b>Kunjungi</b></a>
+        <a class="digital-card reveal" href="{{ url_for('public.tracking') }}"><span>🔎</span><h3>Tracking Aduan</h3><p>Cek progres laporan berdasarkan nomor tiket pengaduan.</p><b>Kunjungi</b></a>
+        <a class="digital-card reveal" href="{{ url_for('public.documents', page='download') }}"><span>📚</span><h3>Dokumen Publik</h3><p>Unduh dokumen, SOP, regulasi, dan informasi publik.</p><b>Kunjungi</b></a>
+    </div>
+</section>
+
+<section class="section social-section">
+    <div class="section-head jakarta-head reveal"><div><h2>Media Sosial</h2><p>Konten edukasi, kampanye, dan informasi resmi DLH Kota Tasikmalaya.</p></div><a class="btn btn-small" href="{{ url_for('public.links') }}">Link Terkait</a></div>
+    <div class="social-grid">
+        <article class="social-card reveal"><img src="{{ url_for('static', filename='img/gallery-2.svg') }}" alt="Sosial media"><span>@dlhtasikmalaya</span><h3>Hari Lingkungan Hidup</h3><p>Mari jaga lingkungan dari rumah, sekolah, kantor, dan ruang publik.</p><a href="{{ url_for('public.links') }}">Lihat Link</a></article>
+        <article class="social-card reveal"><img src="{{ url_for('static', filename='img/gallery-3.svg') }}" alt="Sosial media"><span>@tasikmalayabersih</span><h3>Pilah Sampah dari Sumber</h3><p>Pemilahan sampah membantu pengelolaan kota menjadi lebih efektif.</p><a href="{{ url_for('public.links') }}">Lihat Link</a></article>
+        <article class="social-card reveal"><img src="{{ url_for('static', filename='img/news-3.svg') }}" alt="Sosial media"><span>@dlh_kota</span><h3>Gerak Lebih Bersih</h3><p>Aksi kecil warga dapat membantu kualitas lingkungan kota.</p><a href="{{ url_for('public.links') }}">Lihat Link</a></article>
+    </div>
+</section>
+{% endblock %}

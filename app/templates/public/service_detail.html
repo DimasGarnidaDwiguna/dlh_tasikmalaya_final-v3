@@ -1,0 +1,10 @@
+{% extends "public/base.html" %}
+{% block title %}{{ service.title }} | DLH Kota Tasikmalaya{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/content.css') }}">{% endblock %}
+{% block content %}
+<section class="page-hero"><span>Pelayanan</span><h1>{{ service.title }}</h1></section>
+<section class="section split">
+    <article class="content-box reveal"><div class="big-icon">{{ service.icon }}</div><h2>{{ service.title }}</h2><p>{{ service.content }}</p></article>
+    <article class="content-box reveal"><h3>Alur Layanan</h3><ol class="steps"><li>Konsultasi awal</li><li>Persiapan dokumen</li><li>Verifikasi berkas</li><li>Tindak lanjut dan rekomendasi</li></ol></article>
+</section>
+{% endblock %}

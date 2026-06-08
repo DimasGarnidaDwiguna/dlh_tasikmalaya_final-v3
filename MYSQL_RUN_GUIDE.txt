@@ -1,0 +1,48 @@
+PANDUAN MENJALANKAN DLH TASIKMALAYA MYSQL + UI JAKARTA STYLE
+
+1. Extract project.
+2. Buka XAMPP Control Panel.
+3. Aktifkan Apache dan MySQL.
+4. Buka phpMyAdmin:
+   http://localhost/phpmyadmin
+
+5. Import database:
+   Cara paling mudah:
+   - Klik tab Import di phpMyAdmin.
+   - Pilih file database/mysql_full_import.sql.
+   - Klik Go.
+
+   Cara bertahap:
+   - Import database/00_create_database.sql
+   - Import database/01_schema.sql
+   - Import database/02_seed_data.sql
+
+6. Pastikan file .env berisi:
+   DATABASE_URL=mysql+pymysql://root:@localhost:3306/dlh_tasikmalaya?charset=utf8mb4
+
+7. Jalankan project:
+   python -m venv .venv
+   .venv\Scripts\activate
+   python -m pip install -r requirements.txt
+   python run.py
+
+8. Buka web:
+   http://127.0.0.1:5000
+
+9. Buka admin:
+   http://127.0.0.1:5000/admin/login
+
+10. Login admin mengikuti data dari database source:
+    Username: admin
+    Password: admin123
+
+CATATAN VALIDASI:
+- Input No. Telepon pada pengaduan hanya menerima angka.
+- Validasi dilakukan di frontend dan backend.
+- Input tahun dokumen admin hanya menerima 4 digit angka.
+- Status pengaduan admin dibatasi ke Masuk, Diproses, Selesai, Ditolak.
+
+CATATAN DATABASE:
+- Project ini sudah diarahkan ke MySQL/phpMyAdmin.
+- File SQLite lama tidak digunakan sebagai database utama.
+- Semua data dari database source sudah dikonversi ke database/mysql_full_import.sql.

@@ -1,0 +1,5 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<h1>Pesan Kontak</h1>
+<section class="admin-card"><table><tr><th>ID</th><th>Nama</th><th>Email</th><th>Subjek</th><th>Pesan</th><th>Status</th></tr>{% for item in items.items %}<tr><td>{{ item.id }}</td><td>{{ item.name }}</td><td>{{ item.email }}</td><td>{{ item.subject }}</td><td>{{ item.message }}</td><td>{{ item.status }}</td></tr>{% endfor %}</table></section>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<h1>CMS Link</h1>
+<form class="admin-form" method="post"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input name="name" placeholder="Nama" required><input name="url" placeholder="URL" required><input name="icon" placeholder="Emoji icon"><input name="description" placeholder="Deskripsi"><button>Tambah Link</button></form>
+<section class="admin-card"><table><tr><th>ID</th><th>Nama</th><th>URL</th></tr>{% for item in items %}<tr><td>{{ item.id }}</td><td>{{ item.name }}</td><td>{{ item.url }}</td></tr>{% endfor %}</table></section>
+{% endblock %}

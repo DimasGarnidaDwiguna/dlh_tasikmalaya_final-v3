@@ -1,0 +1,10 @@
+{% extends "public/base.html" %}
+{% block title %}Pengaduan | DLH Kota Tasikmalaya{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/forms.css') }}">{% endblock %}
+{% block content %}
+<section class="page-hero"><span>Pengaduan</span><h1>Pengaduan Lingkungan</h1></section>
+<section class="section split">
+    <article class="content-box reveal"><h2>Informasi Pengaduan</h2><p>Sampaikan laporan pencemaran, sampah, limbah, atau kerusakan lingkungan. Setelah terkirim, sistem membuat nomor tiket untuk tracking.</p><a class="btn btn-small" href="{{ url_for('public.tracking') }}">Cek Status Tiket</a></article>
+    <form class="form-panel reveal" method="post">{% include "public/partials/flash.html" %}<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><h2>Form Pengaduan</h2><div class="form-grid"><label>Nama<input name="name" required></label><label>Email<input type="email" name="email" required></label><label>No. Telepon<input class="only-number" name="phone" type="tel" inputmode="numeric" pattern="[0-9]{8,15}" minlength="8" maxlength="15" autocomplete="tel" placeholder="Contoh: 081234567890" oninput="this.value=this.value.replace(/[^0-9]/g,'')" required></label><label>Kategori<select name="category" required><option>Sampah</option><option>Pencemaran Air</option><option>Pencemaran Udara</option><option>Limbah</option><option>Lainnya</option></select></label><label class="full">Lokasi<input name="location" required></label><label class="full">Pengaduan<textarea name="message" required></textarea></label></div><button class="btn btn-orange">Kirim Pengaduan</button></form>
+</section>
+{% endblock %}

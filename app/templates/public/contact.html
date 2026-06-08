@@ -1,0 +1,10 @@
+{% extends "public/base.html" %}
+{% block title %}Kontak | DLH Kota Tasikmalaya{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/forms.css') }}">{% endblock %}
+{% block content %}
+<section class="page-hero"><span>Kontak</span><h1>Kontak Kami</h1></section>
+<section class="section split">
+    <article class="content-box reveal"><h2>Informasi Kontak</h2><ul class="check-list"><li>Jl. Letnan Harun No. 1, Kota Tasikmalaya</li><li>(0265) 331341</li><li>dlh@tasikmalayakota.go.id</li><li>Senin sampai Jumat, 08.00 sampai 16.00 WIB</li></ul></article>
+    <form class="form-panel reveal" method="post">{% include "public/partials/flash.html" %}<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><h2>Kirim Pesan</h2><div class="form-grid"><label>Nama<input name="name" required></label><label>Email<input type="email" name="email" required></label><label class="full">Subjek<input name="subject" required></label><label class="full">Pesan<textarea name="message" required></textarea></label></div><button class="btn">Kirim Pesan</button></form>
+</section>
+{% endblock %}

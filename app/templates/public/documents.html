@@ -1,0 +1,18 @@
+{% extends "public/base.html" %}
+{% block title %}{{ title }} | DLH Kota Tasikmalaya{% endblock %}
+{% block page_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/pages/content.css') }}">{% endblock %}
+{% block content %}
+<section class="page-hero"><span>Dokumen</span><h1>{{ title }}</h1></section>
+<section class="section">
+    {% if page == "download" %}
+    <div class="doc-list">
+        {% for doc in docs.items %}
+        <article class="doc-card reveal"><div><span class="tag">{{ doc.category }}</span><h3>{{ doc.title }}</h3><p>{{ doc.description }}</p><small>Tahun {{ doc.year }} · {{ doc.downloads }} download</small></div><a class="btn btn-small" href="{{ url_for('public.download_document', filename=doc.filename) }}">Download</a></article>
+        {% endfor %}
+    </div>
+    {% include "public/partials/pagination.html" with context %}
+    {% else %}
+    <article class="content-box reveal"><h2>{{ title }}</h2><p>Halaman ini memuat informasi ringkas tentang {{ title }}. Dokumen lengkap dapat dikelola dari admin dashboard dan diunduh pada halaman Download File.</p><a class="btn" href="{{ url_for('public.documents', page='download') }}">Lihat Download</a></article>
+    {% endif %}
+</section>
+{% endblock %}

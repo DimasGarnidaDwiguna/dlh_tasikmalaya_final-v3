@@ -1,0 +1,6 @@
+{% extends "admin/base.html" %}
+{% block content %}
+<h1>Upload Manager Dokumen</h1>
+<form class="admin-form" method="post" enctype="multipart/form-data"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><input name="title" placeholder="Judul" required><input name="category" placeholder="Kategori" required><input class="only-number" name="year" type="text" inputmode="numeric" pattern="[0-9]{4}" minlength="4" maxlength="4" value="2026" placeholder="Tahun" oninput="this.value=this.value.replace(/[^0-9]/g,'')" required><input name="description" placeholder="Deskripsi"><input name="filename" placeholder="Nama file manual jika tidak upload"><input type="file" name="file"><button>Tambah Dokumen</button></form>
+<section class="admin-card"><table><tr><th>ID</th><th>Judul</th><th>Kategori</th><th>File</th><th>Download</th></tr>{% for item in items %}<tr><td>{{ item.id }}</td><td>{{ item.title }}</td><td>{{ item.category }}</td><td>{{ item.filename }}</td><td>{{ item.downloads }}</td></tr>{% endfor %}</table></section>
+{% endblock %}

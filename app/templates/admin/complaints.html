@@ -1,0 +1,55 @@
+{% extends "admin/base.html" %}
+{% block page_heading %}Pengaduan{% endblock %}
+{% block content %}
+<section class="admin-card">
+    <div class="card-head">
+        <h2>Daftar Pengaduan</h2>
+        <span class="status-pill">{{ items.total if items.total is defined else items.items|length }} data</span>
+    </div>
+    <div class="table-wrap">
+        <table class="admin-table complaints-table">
+            <tr>
+                <th>Tiket</th>
+                <th>Pelapor</th>
+                <th>Kategori</th>
+                <th>Lokasi</th>
+                <th>Status</th>
+                <th>Aksi</th>
+            </tr>
+            {% for item in items.items %}
+            <tr>
+                <td>
+                    <div class="cell-stack">
+                        <strong>{{ item.ticket_number }}</strong>
+                        <small>{{ item.created_at.strftime('%d %b %Y') if item.created_at else '-' }}</small>
+                    </div>
+                </td>
+                <td>
+                    <div class="cell-stack">
+                        <strong>{{ item.name }}</strong>
+                        <small>{{ item.email }}</small>
+                        <small>{{ item.phone or '-' }}</small>
+                    </div>
+                </td>
+                <td><span class="soft-badge">{{ item.category }}</span></td>
+                <td>{{ item.location }}</td>
+                <td><span class="status-pill status-{{ item.status|lower|replace(' ', '-') }}">{{ item.status }}</span></td>
+                <td>
+                    <form class="action-stack" method="post" action="{{ url_for('admin.complaint_status', item_id=item.id) }}">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <select name="status" class="status-select">
+                            <option value="Masuk" {% if item.status == 'Masuk' %}selected{% endif %}>Masuk</option>
+                            <option value="Diproses" {% if item.status == 'Diproses' %}selected{% endif %}>Diproses</option>
+                            <option value="Selesai" {% if item.status == 'Selesai' %}selected{% endif %}>Selesai</option>
+                            <option value="Ditolak" {% if item.status == 'Ditolak' %}selected{% endif %}>Ditolak</option>
+                        </select>
+                        <input name="admin_response" value="{{ item.admin_response or '' }}" placeholder="Tulis respon admin">
+                        <button type="submit" class="btn-action-primary"><i class="bi bi-check2-circle"></i><span>Update</span></button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</section>
+{% endblock %}

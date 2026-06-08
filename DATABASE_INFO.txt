@@ -1,0 +1,18 @@
+DATABASE SIAP DIBUKA
+
+Lokasi database:
+instance/dlh_tasikmalaya.db
+
+Cara buka di VS Code:
+1. Install extension: SQLite Viewer
+2. Klik file instance/dlh_tasikmalaya.db
+3. Lihat tabel: users, services, news, news_categories, agenda, documents, gallery, links, contacts, complaints, visitor_logs
+
+Admin login:
+URL      : http://localhost:5000/admin/login
+Username : admin
+Password : admin123
+
+Database sudah terhubung melalui:
+config.py
+SQLALCHEMY_DATABASE_URI = sqlite:///instance/dlh_tasikmalaya.db

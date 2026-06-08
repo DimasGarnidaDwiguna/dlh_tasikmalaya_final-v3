@@ -1,0 +1,33 @@
+FINAL UPDATE NOTE
+=================
+
+Versi ini sudah diperbaiki sesuai instruksi terakhir:
+
+1. UI/UX memakai gaya Jakarta Style terakhir dengan palet hijau DLH Tasikmalaya.
+2. Dropdown menu diperbaiki agar stabil saat cursor turun ke submenu.
+3. Background putih besar pada dropdown dihapus dan diganti glass green transparent.
+4. Teks heading dropdown "Menu" dan "Pilih menu navigasi" dihilangkan.
+5. Dropdown lebih natural, elegan, clickable, dan responsive.
+6. Mobile menu diperbaiki agar submenu dibuka lewat klik.
+7. Input No HP hanya menerima angka di frontend.
+8. Input No HP divalidasi ulang di backend, 8 sampai 15 digit.
+9. Input tahun dokumen hanya 4 digit angka.
+10. Database utama tetap MySQL/phpMyAdmin melalui DATABASE_URL.
+11. Download dokumen diperkuat dari path traversal.
+12. Upload file diperkuat dari ekstensi berbahaya dan double extension seperti shell.php.jpg.
+13. Login admin diberi rate limit sederhana.
+14. Security headers ditambahkan, termasuk CSP dasar, X-Frame-Options, nosniff, dan Referrer-Policy.
+15. Struktur route dan fungsi utama tetap mengikuti project yang diberikan.
+
+Cara jalan cepat:
+1. Jalankan XAMPP Apache dan MySQL.
+2. Buka http://localhost/phpmyadmin.
+3. Import database/mysql_full_import.sql.
+4. Jalankan:
+   python -m venv .venv
+   .venv\Scripts\activate
+   python -m pip install -r requirements.txt
+   python run.py
+5. Buka http://127.0.0.1:5000.
+
+Jika muncul Unknown database 'dlh_tasikmalaya', berarti database belum dibuat atau file SQL belum diimport.

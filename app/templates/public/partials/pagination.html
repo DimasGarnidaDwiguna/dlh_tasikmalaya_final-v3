@@ -1,0 +1,7 @@
+{% if items and items.pages > 1 %}
+<nav class="pagination">
+    {% if items.has_prev %}<a href="{{ url_for(request.endpoint, page=page, **request.view_args) }}?page={{ items.prev_num }}">Sebelumnya</a>{% endif %}
+    <span>Halaman {{ items.page }} dari {{ items.pages }}</span>
+    {% if items.has_next %}<a href="{{ url_for(request.endpoint, page=page, **request.view_args) }}?page={{ items.next_num }}">Berikutnya</a>{% endif %}
+</nav>
+{% endif %}
